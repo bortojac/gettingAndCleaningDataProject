@@ -50,6 +50,9 @@ names(dat)
 combinedDat <- cbind(subjectDat,activityDat,dat) %>% 
    left_join(activityMap, by = "activityID")
 
+# gather the data into a tall format
+# create variables to tidy data
+# calculate average
 tallDat <- gather(combinedDat, featureName, var, -subject, -activityID, -activity) %>% 
    mutate(featureDomain = substring(featureName, 1,1),
           featureDomain = ifelse(featureDomain == "t", "Time", "Frequency"),
@@ -66,3 +69,6 @@ tallDat <- gather(combinedDat, featureName, var, -subject, -activityID, -activit
             featureAxis, featureVariable) %>% 
    summarise(average = mean(var, na.rm = TRUE)) %>% 
    ungroup()
+
+# write table out
+write.table(tallDat, file = "smartphoneData.txt")
