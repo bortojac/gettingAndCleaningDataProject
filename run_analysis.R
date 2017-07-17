@@ -72,3 +72,6 @@ tallDat <- gather(combinedDat, featureName, var, -subject, -activityID, -activit
 
 # write table out
 write.table(tallDat, file = "smartphoneData.txt")
+
+# create the codebook
+rmarkdown::render("createCodebook.Rmd", output_file = "Codebook.html")
