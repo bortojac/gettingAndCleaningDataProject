@@ -9,7 +9,7 @@ library(data.table)
 library(tidyr)
 
 #setwd
-setwd("/Users/bortojac/Documents/Coursera/dataScienceSpecialization/gettingAndCleaningData/project4/")
+setwd(project_path)
 
 # read in the datasets
 
