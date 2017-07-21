@@ -72,10 +72,6 @@ output <- combinedDat %>%
 # write table out
 write.table(output, file = "smartphoneData.txt", row.name = FALSE)
 
-# create the codebook
-rmarkdown::render("createCodebook.Rmd", output_file = "Codebook.html")
-
-
 
 
 

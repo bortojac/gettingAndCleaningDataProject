@@ -2,8 +2,7 @@
 scripts | description
 ------------- | -------------
 run_analysis.R  | collect and tidy data. This script combines the train and test data, and joins on a more descriptive name for each activity. Further, it gives the variables more descriptive names, as well as calculates the average by subject and activity.
-Codebook.html | describes dataset, variables, and manipulation of data in run_analysis.R. The Codebook is a direct addition to the codebook provided with the data. My addition is a description of the variables created in run-analysis.r and can be found towards the end of the Codebook.
-createCodebook.Rmd | this file creates the codebook.
+createCodebook.Rmd | this file creates the codebook and also describes dataset, variables, and manipulation of data in run_analysis.R. The Codebook is a direct addition to the codebook provided with the data. My addition is a description of the variables created in run-analysis.r and can be found towards the end of the Codebook.
 README.md | this file creates the README.
 
 ## Project Instructions
