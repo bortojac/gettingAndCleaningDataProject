@@ -65,9 +65,9 @@ Other variables | The other variables in the data set are best described in the 
 
 
 ## Manipulations
-** The train and test data were combined.
-** Activity was given more descriptive names by joining on the activity names given in the data.
-** The variables were given more descriptive names via a for loop and general expressions.
-** The data was grouped by subject and activity.
-** The mean for each variable was calculated. 
-** This summary is stored as smartphoneData.txt, and is the output of run-analysis.R. Please refer to the README for more information.
+* The train and test data were combined.
+* Activity was given more descriptive names by joining on the activity names given in the data.
+* The variables were given more descriptive names via a for loop and general expressions.
+* The data was grouped by subject and activity.
+* The mean for each variable was calculated. 
+* This summary is stored as smartphoneData.txt, and is the output of run-analysis.R. Please refer to the README for more information.

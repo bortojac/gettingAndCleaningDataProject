@@ -7,13 +7,13 @@ createCodebook.Rmd | this file creates the codebook.
 README.md | this file creates the README.
 
 ## Project Instructions
-** Merges the training and the test sets to create one data set.
-    ** The test and train sets are combined with rbind.
-** Extracts only the measurements on the mean and standard deviation for each measurement.
-    ** I use grepl and regular expressions to get only the variable names that contain "mean" and "std". I then subset the merged dataset from the combined dataset mentioned above.
-** Uses descriptive activity names to name the activities in the data set
-   ** I use left_join from dplyr to bring descriptive activity names into the dataset. I join by the activity ID number provided by the original data files.
-** Appropriately labels the data set with descriptive variable names.
-   ** I have named each variable a more meaningful name via a for loop and general expressions. See run_analysis.R
-** From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-   ** This is done in run_analysis.R with dplyr's group_by and summarise_all. 
+1. Merges the training and the test sets to create one data set.
+    * The test and train sets are combined with rbind.
+2. Extracts only the measurements on the mean and standard deviation for each measurement.
+    * I use grepl and regular expressions to get only the variable names that contain "mean" and "std". I then subset the merged dataset from the combined dataset mentioned above.
+3. Uses descriptive activity names to name the activities in the data set
+    * I use left_join from dplyr to bring descriptive activity names into the dataset. I join by the activity ID number provided by the original data files.
+4. Appropriately labels the data set with descriptive variable names.
+    * I have named each variable a more meaningful name via a for loop and general expressions. See run_analysis.R
+5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+    * This is done in run_analysis.R with dplyr's group_by and summarise_all. 
