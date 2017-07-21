@@ -8,6 +8,7 @@ library(stringr)
 library(data.table)
 library(tidyr)
 
+project_path <- "/Users/bortojac/Documents/Coursera/dataScienceSpecialization/gettingAndCleaningData/project4/"
 #setwd
 setwd(project_path)
 
@@ -48,30 +49,53 @@ names(dat)
 
 # combine the columns into one dataset, and join on descriptive activity names
 combinedDat <- cbind(subjectDat,activityDat,dat) %>% 
-   left_join(activityMap, by = "activityID")
+   left_join(activityMap, by = "activityID") %>% 
+   select(-activityID)
 
-# gather the data into a tall format
-# create variables to tidy data
-# calculate average
-tallDat <- gather(combinedDat, featureName, var, -subject, -activityID, -activity) %>% 
-   mutate(featureDomain = substring(featureName, 1,1),
-          featureDomain = ifelse(featureDomain == "t", "Time", "Frequency"),
-          featureAcceleration = ifelse(grepl("Body", featureName), "Body", "Gravity"),
-          featureInstrument = ifelse(grepl("Gyro", featureName), "Gyroscope", "Accelerometer"),
-          featureJerk = ifelse(grepl("Jerk", featureName) == TRUE, "Jerk", NA),
-          featureMagnitude = ifelse(grepl("Mag", featureName) == TRUE, "Magnitude", NA),
-          featureAxis = str_sub(featureName,-1),
-          featureVariable = ifelse(grepl("mean", featureName), "Mean", "Standard Deviation")
-          ) %>% 
-   select(-activityID) %>% 
-   group_by(activity, subject, featureAcceleration,
-            featureInstrument, featureJerk, featureMagnitude,
-            featureAxis, featureVariable) %>% 
-   summarise(average = mean(var, na.rm = TRUE)) %>% 
-   ungroup()
+
+# create descriptive variable names for the data.
+
+patternVec <- c("^t" = "Time of ", "^f" = "Frequency of ", "Acc" = "Acceleration ", "Gyro" = "Gyroscope ", "Jerk" = "Jerk ",
+                "mean\\(\\)" = " Mean", "std\\(\\)" = " Standard Deviation", "meanFreq" = " Mean Frequency", "Body" = "Body ", 
+                "Mag" = "Magnitude ")
+for(i in names(patternVec)) {
+   names(combinedDat) <- gsub(i,patternVec[[i]], names(combinedDat))
+}
+names(combinedDat)
+
+# compute the average for all of the variables by subject and activity
+output <- combinedDat %>% 
+   group_by(subject, activity) %>% 
+   summarise_all(mean) %>% 
+   ungroup() 
 
 # write table out
-write.table(tallDat, file = "smartphoneData.txt", row.name = FALSE)
+write.table(output, file = "smartphoneData.txt", row.name = FALSE)
 
 # create the codebook
 rmarkdown::render("createCodebook.Rmd", output_file = "Codebook.html")
+
+
+
+
+
+#### code for tall dataset is below. - not used
+# # gather the data into a tall format
+# # create variables to tidy data
+# # calculate average
+# tallDat <- gather(combinedDat, featureName, var, -subject, -activityID, -activity) %>% 
+#    mutate(featureDomain = substring(featureName, 1,1),
+#           featureDomain = ifelse(featureDomain == "t", "Time", "Frequency"),
+#           featureAcceleration = ifelse(grepl("Body", featureName), "Body", "Gravity"),
+#           featureInstrument = ifelse(grepl("Gyro", featureName), "Gyroscope", "Accelerometer"),
+#           featureJerk = ifelse(grepl("Jerk", featureName) == TRUE, "Jerk", NA),
+#           featureMagnitude = ifelse(grepl("Mag", featureName) == TRUE, "Magnitude", NA),
+#           featureAxis = ifelse(str_sub(featureName,-1)),
+#           featureVariable = ifelse(grepl("mean", featureName), "Mean", "Standard Deviation")
+#           ) %>% 
+#    select(-activityID) %>% 
+#    group_by(activity, subject, featureAcceleration,
+#             featureInstrument, featureJerk, featureMagnitude,
+#             featureAxis, featureVariable) %>% 
+#    summarise(average = mean(var, na.rm = TRUE)) %>% 
+#    ungroup()

@@ -47,21 +47,27 @@ The following files are available for the train and test data. Their description
 
 - 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
 
+Full description of the data
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+Here are the data for the project:
+
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
 ## Variable Description
 
 
 Variable | Description
 ------------- | -------------
-activity | Activity performed by subject. WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
-subject | The subject ID
-featureAcceleration | The Acceleration Signal. Body or Gravity
-featureInstrument | Instrument used for measurement. Gyroscope or Accelerometer
-featureJerk | Jerk Signal
-featureMagnitude | Magnitude Signal
-featureAxis | Axial signals. X, Y, and/or Z
-featureVariable | Mean or SD
-average | Average of each variable for each subject
+activity | Activity performed by subject. WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING.
+subject | The subject ID.
+Other variables | The other variables in the data set are best described in the features.txt file from the original data.
+
 
 ## Manipulations
-The train and test data were combined with subject and activity data, and then was collapsed into key-value pairs based on the features described above.
-The data feature names were then separated into tidy columns.
+** The train and test data were combined.
+** Activity was given more descriptive names by joining on the activity names given in the data.
+** The variables were given more descriptive names via a for loop and general expressions.
+** The data was grouped by subject and activity.
+** The mean for each variable was calculated. 
+** This summary is stored as smartphoneData.txt, and is the output of run-analysis.R. Please refer to the README for more information.

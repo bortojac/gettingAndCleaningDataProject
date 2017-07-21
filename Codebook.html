@@ -154,6 +154,9 @@ $(document).ready(function () {
 <li><p>‘train/Inertial Signals/body_acc_x_train.txt’: The body acceleration signal obtained by subtracting the gravity from the total acceleration.</p></li>
 <li><p>‘train/Inertial Signals/body_gyro_x_train.txt’: The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second.</p></li>
 </ul>
+<p>Full description of the data <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones" class="uri">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a></p>
+<p>Here are the data for the project:</p>
+<p><a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip</a></p>
 <div id="variable-description" class="section level2">
 <h2>Variable Description</h2>
 <table style="width:39%;">
@@ -170,46 +173,22 @@ $(document).ready(function () {
 <tbody>
 <tr class="odd">
 <td>activity</td>
-<td>Activity performed by subject. WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING</td>
+<td>Activity performed by subject. WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING.</td>
 </tr>
 <tr class="even">
 <td>subject</td>
-<td>The subject ID</td>
+<td>The subject ID.</td>
 </tr>
 <tr class="odd">
-<td>featureAcceleration</td>
-<td>The Acceleration Signal. Body or Gravity</td>
-</tr>
-<tr class="even">
-<td>featureInstrument</td>
-<td>Instrument used for measurement. Gyroscope or Accelerometer</td>
-</tr>
-<tr class="odd">
-<td>featureJerk</td>
-<td>Jerk Signal</td>
-</tr>
-<tr class="even">
-<td>featureMagnitude</td>
-<td>Magnitude Signal</td>
-</tr>
-<tr class="odd">
-<td>featureAxis</td>
-<td>Axial signals. X, Y, and/or Z</td>
-</tr>
-<tr class="even">
-<td>featureVariable</td>
-<td>Mean or SD</td>
-</tr>
-<tr class="odd">
-<td>average</td>
-<td>Average of each variable for each subject</td>
+<td>Other variables</td>
+<td>The other variables in the data set are best described in the features.txt file from the original data.</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="manipulations" class="section level2">
 <h2>Manipulations</h2>
-<p>The train and test data were combined with subject and activity data, and then was collapsed into key-value pairs based on the features described above. The data feature names were then separated into tidy columns.</p>
+<p>** The train and test data were combined. ** Activity was given more descriptive names by joining on the activity names given in the data. ** The variables were given more descriptive names via a for loop and general expressions. ** The data was grouped by subject and activity. ** The mean for each variable was calculated. ** This summary is stored as smartphoneData.txt, and is the output of run-analysis.R. Please refer to the README for more information.</p>
 </div>
 </div>
 
